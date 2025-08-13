@@ -3,9 +3,13 @@
 This starter turns the legacy VB6 RCOS TCC code into a modern C# codebase:
 
 - `RCOS.Tcc/` — a **pure C#** serial protocol client you can reuse anywhere.
-- `ASCOM.RCOS.Focuser/` — a minimal **IFocuserV3** driver skeleton.
-- `ASCOM.RCOS.Rotator/` — a minimal **IRotatorV3** driver skeleton.
-
+- `ASCOM.RCOS.Focuser/` — a minimal **IFocuserV3** driver skeleton for the focuser.
+- `ASCOM.RCOS.Rotator/` — a minimal **IRotatorV3** driver skeleton for the rotator.
+- `ASCOM.RCOS.Switch/` — a minimal **ISwitchV2** driver skeleton for fan mode and speeds.
+- `ASCOM.RCOS.Dew/` — a minimal **ISwitchV2** driver skeleton for dew and secondary heater.
+- `ASCOM.RCOS.Temperature/` — a minimal **ITemperatureSensor** driver skeleton for TCC temperatures.
+- `RCOS.DriverCommon/` — contains a minimal profile.
+ 
 > The skeletons purposely avoid direct ASCOM references so you can add the exact versions that match your system (ASCOM Platform 6.x+).
 
 ## What’s already mapped
