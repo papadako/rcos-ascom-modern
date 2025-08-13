@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyTitle>ASCOM RCOS Focuser</AssemblyTitle>
+    <Description>Skeleton IFocuserV3 driver for RCOS TCC.</Description>
+    <Platforms>AnyCPU</Platforms>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RCOS.Tcc\RCOS.Tcc.csproj" />
+  </ItemGroup>
+
+  <!-- NOTE: Add references to ASCOM assemblies using NuGet or ASCOM Platform -->
+  <!-- Example (adjust versions to your installed ASCOM Platform): 
+  <ItemGroup>
+    <Reference Include="ASCOM.DeviceInterfaces" />
+    <Reference Include="ASCOM.Utilities" />
+  </ItemGroup> -->
+</Project>
