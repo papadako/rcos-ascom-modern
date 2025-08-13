@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyTitle>RCOS Driver Common</AssemblyTitle>
+    <Description>Shared helpers for ASCOM drivers: profile storage with ASCOM.Utilities or JSON fallback.</Description>
+    <Platforms>AnyCPU</Platforms>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+  <!-- When you add ASCOM.Utilities reference, also define USE_ASCOM in build settings if desired.
+       The code works without it using JSON fallback in %APPDATA%\RCOS\ASCOM\... -->
+</Project>

@@ -12,6 +12,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\RCOS.Tcc\RCOS.Tcc.csproj" />
+    <ProjectReference Include="..\RCOS.DriverCommon\RCOS.DriverCommon.csproj" />
   </ItemGroup>
   <!-- Add ASCOM references (ASCOM.DeviceInterfaces, ASCOM.Utilities) in your environment -->
 </Project>

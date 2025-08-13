@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using RCOS.Tcc;
+using RCOS.DriverCommon;
 // using ASCOM.DeviceInterface;   // ITemperatureSensor
 // using ASCOM.Utilities;
 
@@ -14,11 +15,16 @@ namespace ASCOM.RCOS
     public class TemperatureSensor /* : ITemperatureSensor */
     {
         private readonly TccClient _tcc;
+        private readonly DriverProfile _profile;
+        public const string DriverId = "ASCOM.RCOS.TemperatureSensor";
+        public string PortName { get => _profile.ComPort; set { _profile.ComPort = value; _profile.Save(); } }
         private readonly object _sync = new();
 
         public TemperatureSensor(string portName)
         {
-            _tcc = new TccClient(portName);
+            _profile = DriverProfile.Load(DeviceType.TemperatureSensor, DriverId);
+            if (portName is not null) { _profile.ComPort = portName; _profile.Save(); }
+            _tcc = new TccClient(_profile.ComPort);
             _tcc.Open();
             _tcc.QueryTemperature();
         }

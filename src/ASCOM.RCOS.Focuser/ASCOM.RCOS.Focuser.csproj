@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RCOS.Tcc\RCOS.Tcc.csproj" />
+    <ProjectReference Include="..\RCOS.DriverCommon\RCOS.DriverCommon.csproj" />
   </ItemGroup>
 
   <!-- NOTE: Add references to ASCOM assemblies using NuGet or ASCOM Platform -->

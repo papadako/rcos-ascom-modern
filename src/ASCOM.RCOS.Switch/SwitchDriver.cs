@@ -1,5 +1,6 @@
 using System;
 using RCOS.Tcc;
+using RCOS.DriverCommon;
 // using ASCOM.DeviceInterface;   // ISwitchV2
 // using ASCOM.Utilities;
 
@@ -19,10 +20,15 @@ namespace ASCOM.RCOS
     public class Switch /* : ISwitchV2 */
     {
         private readonly TccClient _tcc;
+        private readonly DriverProfile _profile;
+        public const string DriverId = "ASCOM.RCOS.Switch";
+        public string PortName { get => _profile.ComPort; set { _profile.ComPort = value; _profile.Save(); } }
 
         public Switch(string portName)
         {
-            _tcc = new TccClient(portName);
+            _profile = DriverProfile.Load(DeviceType.Switch, DriverId);
+            if (portName is not null) { _profile.ComPort = portName; _profile.Save(); }
+            _tcc = new TccClient(_profile.ComPort);
             _tcc.Open();
             _tcc.QueryTemperature(); // picks up :fm and :fs if device reports them in same frame
         }

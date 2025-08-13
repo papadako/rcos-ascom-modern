@@ -1,5 +1,6 @@
 using System;
 using RCOS.Tcc;
+using RCOS.DriverCommon;
 // using ASCOM.DeviceInterface;   // ISwitchV2
 // using ASCOM.Utilities;
 
@@ -18,10 +19,15 @@ namespace ASCOM.RCOS
     public class Dew /* : ISwitchV2 */
     {
         private readonly TccClient _tcc;
+        private readonly DriverProfile _profile;
+        public const string DriverId = "ASCOM.RCOS.Dew";
+        public string PortName { get => _profile.ComPort; set { _profile.ComPort = value; _profile.Save(); } }
 
         public Dew(string portName)
         {
-            _tcc = new TccClient(portName);
+            _profile = DriverProfile.Load(DeviceType.Dew, DriverId);
+            if (portName is not null) { _profile.ComPort = portName; _profile.Save(); }
+            _tcc = new TccClient(_profile.ComPort);
             _tcc.Open();
             _tcc.QueryTemperature(); // picks up :sm/:ss/:st/:d1/:d2 if present
         }

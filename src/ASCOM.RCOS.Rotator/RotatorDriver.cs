@@ -1,5 +1,6 @@
 using System;
 using RCOS.Tcc;
+using RCOS.DriverCommon;
 // using ASCOM.DeviceInterface;
 
 namespace ASCOM.RCOS
@@ -10,10 +11,15 @@ namespace ASCOM.RCOS
     public class Rotator /* : IRotatorV3 */
     {
         private readonly TccClient _tcc;
+        private readonly DriverProfile _profile;
+        public const string DriverId = "ASCOM.RCOS.Rotator";
+        public string PortName { get => _profile.ComPort; set { _profile.ComPort = value; _profile.Save(); } }
 
         public Rotator(string portName)
         {
-            _tcc = new TccClient(portName);
+            _profile = DriverProfile.Load(DeviceType.Rotator, DriverId);
+            if (portName is not null) { _profile.ComPort = portName; _profile.Save(); }
+            _tcc = new TccClient(_profile.ComPort);
             _tcc.Open();
             _tcc.Ping();
             _tcc.QueryRotator();
