@@ -17,16 +17,16 @@ namespace ASCOM.RCOS
     /// - Indices 0 and 1 are mutually exclusive; setting one clears the other.
     /// - Setting index 2 forces Manual mode (mode=0).
     /// </summary>
-    public class Switch /* : ISwitchV2 */
+    public class Fans /* : ISwitchV2 */
     {
         private readonly TccClient _tcc;
         private readonly DriverProfile _profile;
-        public const string DriverId = "ASCOM.RCOS.Switch";
+        public const string DriverId = "ASCOM.RCOS.Fans";
         public string PortName { get => _profile.ComPort; set { _profile.ComPort = value; _profile.Save(); } }
 
-        public Switch(string portName)
+        public Fans(string portName)
         {
-            _profile = DriverProfile.Load(DeviceType.Switch, DriverId);
+            _profile = DriverProfile.Load(DeviceType.Fans, DriverId);
             if (portName is not null) { _profile.ComPort = portName; _profile.Save(); }
             _tcc = new TccClient(_profile.ComPort);
             _tcc.Open();
