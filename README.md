@@ -11,6 +11,9 @@ This starter turns the legacy VB6 RCOS TCC code into a modern C# codebase:
 - `RCOS.DriverCommon/` — contains a minimal profile
  
 > The skeletons purposely avoid direct ASCOM references so you can add the exact versions that match your system (ASCOM Platform 6.x+).
+>
+
+Interfaces are described at https://ascom-standards.org/Help/Platform/html/N_ASCOM_DeviceInterface.htm
 
 ## What’s already mapped
 
