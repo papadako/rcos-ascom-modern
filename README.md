@@ -5,7 +5,7 @@ This starter turns the legacy VB6 RCOS TCC code into a modern C# codebase:
 - `RCOS.Tcc/` — a **pure C#** serial protocol client you can reuse anywhere.
 - `ASCOM.RCOS.Focuser/` — a minimal **IFocuserV3** driver skeleton for the focuser.
 - `ASCOM.RCOS.Rotator/` — a minimal **IRotatorV3** driver skeleton for the rotator.
-- `ASCOM.RCOS.Switch/` — a minimal **ISwitchV2** driver skeleton for fan mode and speeds.
+- `ASCOM.RCOS.Fans/` — a minimal **ISwitchV2** driver skeleton for fan mode and speeds.
 - `ASCOM.RCOS.Dew/` — a minimal **ISwitchV2** driver skeleton for dew and secondary heater.
 - `ASCOM.RCOS.Temperature/` — a minimal **ITemperatureSensor** driver skeleton for TCC temperatures.
 - `RCOS.DriverCommon/` — contains a minimal profile.
@@ -61,31 +61,15 @@ dotnet build src/RCOS.Tcc/RCOS.Tcc.csproj
 # Drivers target net48 to align with ASCOM COM: build them from Visual Studio once references are added.
 ```
 
-## Where this came from
-
-- The mapping was derived from your VB6 files:
-  - `Serial.cls` (MSCOMM serial wrapper)
-  - `RCOS.cls` (Focuser logic)
-  - `Rotator.cls` (Rotator logic)
-  - `Temperature.cls` (Temps, fans)
-
-## Next steps I can do for you
-
-- Wire-up **Profile** (COM port, step limits, temp-comp options) and **SetupDialog**.
-- Add **CoverCalibrator** and/or **Switch** devices for cover, dew, and limit switch bits.
-- Produce signed **MSI installers** and **ASCOM registration** scripts.
-
-## Temperature & Fan (added)
+## Temperature & Fan
 
 - **ASCOM.RCOS.TemperatureSensor/** — maps `:t1/:t2/:t3/:t7` to Celsius readings (Ambient, Primary, Secondary, Electronics).
-- **ASCOM.RCOS.Switch/** — exposes fan control:
+- **ASCOM.RCOS.Fans/** — exposes fan control:
   - Switch[0] **Fan Auto** (bool) → `n1`
   - Switch[1] **Fan Off** (bool) → `n2`
   - Switch[2] **Fan Speed** (0..1) → `y{0..100}` (forces Manual mode)
 
 > After adding ASCOM references, uncomment the interface lines and fill in the standard members (SetupDialog, Connected, Profile).
-
-
 
 ## Dew / Secondary Heater
 
@@ -97,3 +81,18 @@ dotnet build src/RCOS.Tcc/RCOS.Tcc.csproj
   - Tokens: `:sm` (mode), `:ss` (sec power), `:st` (setpoint), `:d1`, `:d2` (dew channels), plus `:fg` and `:ft` for fan tuning.
   - Commands: `w1`/`w2` (sec auto/off), `s{0..100}` (sec manual power), `P{±100}` (setpoint in tenths °C),
     `c{0..100}` (dew1 power), `k{0..100}` (dew2 power), `g{1..100}` gain x10, `O{0..100}` deadband x10.
+
+## Where this came from
+
+- The mapping was derived from your VB6 files at https://sourceforge.net/projects/rcostccvb6/files/:
+  - `Serial.cls` (MSCOMM serial wrapper)
+  - `RCOS.cls` (Focuser logic)
+  - `Rotator.cls` (Rotator logic)
+  - `Temperature.cls` (Temps, fans)
+
+## Next steps I can do for you
+
+- Wire-up **Profile** (COM port, step limits, temp-comp options) and **SetupDialog**.
+- Add **CoverCalibrator** and/or **Switch** devices for cover, dew, and limit switch bits.
+- Produce signed **MSI installers** and **ASCOM registration** scripts.
+

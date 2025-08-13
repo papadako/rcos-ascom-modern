@@ -3,8 +3,8 @@
     <TargetFramework>net48</TargetFramework>
     <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
-    <AssemblyTitle>ASCOM RCOS Switch</AssemblyTitle>
-    <Description>Skeleton ISwitch driver for RCOS TCC.</Description>
+    <AssemblyTitle>ASCOM RCOS Fans</AssemblyTitle>
+    <Description>Skeleton ISwitch driver for fans of RCOS TCC.</Description>
     <Platforms>AnyCPU</Platforms>
     <RegisterForComInterop>true</RegisterForComInterop>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
